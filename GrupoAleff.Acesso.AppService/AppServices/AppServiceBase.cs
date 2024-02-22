@@ -31,5 +31,10 @@ namespace GrupoAleff.Acesso.AppService.AppServices
         {
             await _repositoryBase.Remove(entity);
         }
+
+        public async Task Update(TEntity entity)
+        {
+            await _repositoryBase.Update(entity);
+        }
     }
 }

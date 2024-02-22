@@ -4,8 +4,10 @@ using GrupoAleff.Acesso.Domain.Interfaces.Repository;
 using GrupoAleff.Acesso.Infra.Data.Context;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Configuration;
 using System.Reflection;
 using System.Threading.Tasks;
+using static Dapper.SqlMapper;
 
 namespace GrupoAleff.Acesso.Infra.Data.Repositories
 {
@@ -36,19 +38,60 @@ namespace GrupoAleff.Acesso.Infra.Data.Repositories
             await connection.ExecuteAsync(sql);                        
         }
 
-        public Task<IEnumerable<TEntity>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
-            throw new System.NotImplementedException();
+            var tableName = typeof(TEntity).Name;
+            
+            var connection = AleffDBContext.GetConnection();
+            string sql = "SELECT * FROM " + typeof(TEntity).Name ;
+
+            return await connection.QueryAsync<TEntity>(sql);
         }
 
-        public Task<TEntity> GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            throw new System.NotImplementedException();
+            var tableName = typeof(TEntity).Name;
+            var properties = typeof(TEntity).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            var Id = properties.FirstOrDefault(p => p.Name.Contains(tableName)).Name;
+                    
+            var connection = AleffDBContext.GetConnection();
+            string sql = "SELECT * FROM " + typeof(TEntity).Name + $" WHERE {Id} = @Id";
+
+            return await connection.QueryFirstOrDefaultAsync<TEntity>(sql, new { Id = id });
         }
 
-        public Task Remove(TEntity entity)
+        public async Task Remove(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            var tableName = typeof(TEntity).Name;
+            var properties = typeof(TEntity).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            var Id = properties.FirstOrDefault(p => p.Name.Contains(tableName)).Name;
+            var IdVaue = properties.FirstOrDefault(p => p.Name.Contains(tableName)).GetValue(entity);
+            
+            var connection = AleffDBContext.GetConnection();
+            string sql = "DELETE FROM " + typeof(TEntity).Name + $" WHERE {Id} = @Id";
+
+            await connection.ExecuteScalarAsync<TEntity>(sql, new { Id = IdVaue });
+        }
+
+        public async Task Update(TEntity entity)
+        {
+            var tableName = typeof(TEntity).Name;
+            var properties = typeof(TEntity).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                        
+            var queryParams = string.Join(",", properties.Where(p => !p.Name.Contains(tableName)).Select(p =>
+                    (p.Name + "=" + (p.GetValue(entity).GetType() == typeof(string) ? $"'{p.GetValue(entity)}'" : p.GetValue(entity)))
+                ));
+            
+            var Id = properties.FirstOrDefault(p => p.Name.Contains(tableName)).Name;
+            var IdVaue = properties.FirstOrDefault(p => p.Name.Contains(tableName)).GetValue(entity);
+
+            var connection = AleffDBContext.GetConnection();
+
+            var sql = $"UPDATE {tableName} set {queryParams}" + $" WHERE {Id} = @Id";
+
+            await connection.ExecuteScalarAsync<TEntity>(sql, new { Id = IdVaue });
         }
     }
 }

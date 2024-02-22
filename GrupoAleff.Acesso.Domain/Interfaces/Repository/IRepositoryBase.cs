@@ -9,5 +9,6 @@ namespace GrupoAleff.Acesso.Domain.Interfaces.Repository
         Task<TEntity> GetById(int id);
         Task<IEnumerable<TEntity>> GetAll();
         Task Remove(TEntity entity);
+        Task Update(TEntity entity);
     }
 }

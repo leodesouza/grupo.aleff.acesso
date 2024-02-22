@@ -9,6 +9,7 @@ namespace GrupoAleff.Acesso.AppService.Interfaces
         Task<TEntity> GetById(int id);
         Task<IEnumerable<TEntity>> GetAll();
         Task Remove(TEntity entity);
+        Task Update(TEntity entity);
     }
     
 }
