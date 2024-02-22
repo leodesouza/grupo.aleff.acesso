@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2 Web", "3.2 Web", "{A7D1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrupoAleff.Acesso.API", "GrupoAleff.Acesso.API\GrupoAleff.Acesso.API.csproj", "{A249A932-EA92-47B2-91B4-F1B87200DA23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrupoAleff.Acesso.Web", "GrupoAleff.Acesso.Web\GrupoAleff.Acesso.Web.csproj", "{AF805851-2DF8-429F-99D0-7AFDFEA96675}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{A249A932-EA92-47B2-91B4-F1B87200DA23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A249A932-EA92-47B2-91B4-F1B87200DA23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A249A932-EA92-47B2-91B4-F1B87200DA23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF805851-2DF8-429F-99D0-7AFDFEA96675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF805851-2DF8-429F-99D0-7AFDFEA96675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF805851-2DF8-429F-99D0-7AFDFEA96675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF805851-2DF8-429F-99D0-7AFDFEA96675}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{A5931D5A-71A9-4D03-A8E0-D272E3D30F4D} = {4784A2D7-53C5-40C6-BB1E-7BC68CCD15ED}
 		{A7D1152D-F1E6-4919-AAB8-CFC2C76ED664} = {4784A2D7-53C5-40C6-BB1E-7BC68CCD15ED}
 		{A249A932-EA92-47B2-91B4-F1B87200DA23} = {A5931D5A-71A9-4D03-A8E0-D272E3D30F4D}
+		{AF805851-2DF8-429F-99D0-7AFDFEA96675} = {A7D1152D-F1E6-4919-AAB8-CFC2C76ED664}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6AEFC7DE-5D6C-4C66-8D58-4B9EA13C4FF0}
