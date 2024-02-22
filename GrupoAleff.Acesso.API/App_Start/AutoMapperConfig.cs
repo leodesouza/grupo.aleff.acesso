@@ -1,23 +1,28 @@
 ﻿using AutoMapper;
 using GrupoAleff.Acesso.API.Models;
 using GrupoAleff.Acesso.Domain.Entities;
+using System.Collections.Generic;
 
 namespace GrupoAleff.Acesso.API.App_Start
 {
     public class AutoMapperConfig
-    {
-        public static void RegisterMappings()
+    {       
+        public static IMapper Register()
         {
-            Mapper.Initialize(config =>
+            var config = new MapperConfiguration(cfg =>
             {
                 //Usuario
-                config.CreateMap<UsuarioModel, Usuario>();
-                config.CreateMap<Usuario, UsuarioModel>();
+                cfg.CreateMap<UsuarioModel, Usuario>();
+                cfg.CreateMap<Usuario, UsuarioModel>();
+                cfg.CreateMap<List<Usuario>, List<UsuarioModel>>();
 
                 //LogAcesso
-                config.CreateMap<LogAcessoModel, LogAcesso>();
-                config.CreateMap<LogAcesso, LogAcessoModel>();
+                cfg.CreateMap<LogAcessoModel, LogAcesso>();
+                cfg.CreateMap<LogAcesso, LogAcessoModel>();
+                cfg.CreateMap<List<LogAcesso>, List<LogAcessoModel>>();
             });
+
+            return config.CreateMapper();
         }
     }
 }

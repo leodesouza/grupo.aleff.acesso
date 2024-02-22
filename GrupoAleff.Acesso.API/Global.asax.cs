@@ -14,8 +14,7 @@ namespace GrupoAleff.Acesso.API
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);            
-            SimpleInjectorConfig.RegisterDepedencies();
-            AutoMapperConfig.RegisterMappings();
+            SimpleInjectorConfig.RegisterDepedencies();            
         }
     }
 }

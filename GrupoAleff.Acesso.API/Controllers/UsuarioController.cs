@@ -1,38 +1,52 @@
-﻿using GrupoAleff.Acesso.API.Models;
+﻿using AutoMapper;
+using GrupoAleff.Acesso.API.Models;
 using GrupoAleff.Acesso.AppService.Interfaces;
-using System.Collections.Generic;
+using GrupoAleff.Acesso.Domain.Entities;
+using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Mvc;
 
 namespace GrupoAleff.Acesso.API.Controllers
 {
     public class UsuarioController : ApiController
     {
         private readonly IUsuarioAppService _usuarioAppService;
-        public UsuarioController(IUsuarioAppService usuarioAppService)             
+        private readonly IMapper _mapper;
+        public UsuarioController(IUsuarioAppService usuarioAppService, IMapper mapper)
         {
             _usuarioAppService = usuarioAppService;
+            _mapper = mapper;
         }
 
-        // GET api/values
-        public async Task<IEnumerable<string>> Get()
+
+        public async Task<UsuarioModel> Get()
         {
-            return await Task.Run(() => {
-                return new string[] { "value1", "value2" };
-            });                        
+            return await Task.Run(() =>
+            {
+                var model = new UsuarioModel();
+                return model;
+            });
         }
 
-        // GET api/values/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/values
-        public void Post([FromBody] UsuarioModel value)
+        public async Task<IHttpActionResult> Post([FromBody] UsuarioModel model)
         {
-            //_usuarioAppService.Add
+            try
+            {
+                var usuario = _mapper.Map<Usuario>(model);
+                await _usuarioAppService.Add(usuario);
+
+                return Ok();
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError();
+            }
         }
 
         // PUT api/values/5
