@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[LogAcesso] (
     PRIMARY KEY CLUSTERED ([LogAcessoId] ASC)
 );
 
-INSERT INTO USUARIO(Nome, Login, Senha, IsAdmin) VALUES('admin2','admin.root','123456', 1)
+INSERT INTO USUARIO(Nome, Login, Senha, IsAdmin) VALUES('','','', 1)
 
 # EndPoint's
 ## Usuario
@@ -44,9 +44,10 @@ http://localhost:{port}/api/usuario
 ## LogAcesso
 http://localhost:49436/api/logacesso/1
 
-#Projeto API
+# Projeto API
 GrupoAleff.Acesso.API
-#Projeto ASP.NET
+
+# Projeto ASP.NET
 GrupoAleff.Acesso.Web
 
 
