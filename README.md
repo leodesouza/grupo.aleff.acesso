@@ -23,3 +23,17 @@ CREATE TABLE [dbo].[LogAcesso] (
 );
 
 INSERT INTO USUARIO(Nome, Login, Senha, IsAdmin) VALUES('admin2','admin.root','123456', 1)
+
+# EndPoint's
+## Usuario
+{
+    "Nome": "user4",
+    "Login": "user4@gmail.com",
+    "Senha": "11111",
+    "IsAdmin": 0
+}
+### Post, Put
+http://localhost:{port}/api/usuario
+
+### Get, Delete
+http://localhost:{port}/api/usuario/{id}
