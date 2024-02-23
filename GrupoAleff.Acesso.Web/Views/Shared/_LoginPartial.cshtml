@@ -1,21 +1,27 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+@if (Session["USUARIO_NORMAL"] != null && (bool)Session["USUARIO_NORMAL"])
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
 
-    <ul class="navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="nav-link" })
-        </li>
-        <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+    var nomeUsuairo = "";
+    if (Session["NOME_USUARIO"] != null)
+    {
+        nomeUsuairo = Session["NOME_USUARIO"].ToString();
+    }
+    using (Html.BeginForm("LogOff", "Conta", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Olá " + nomeUsuairo + " !", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Home", @class = "nav-link" })
+            </li>
+            <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
 {
-    <ul class="navbar-nav navbar-right">        
-        <li>@Html.ActionLink("Log in", "Login", "Usuario", routeValues: null, htmlAttributes: new { id = "loginLink", @class="nav-link" })</li>
+    <ul class="navbar-nav navbar-right">
+        <li>@Html.ActionLink("Log in", "Login", "Conta", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
     </ul>
 }

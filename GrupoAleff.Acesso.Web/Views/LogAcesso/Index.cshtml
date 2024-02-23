@@ -1,0 +1,39 @@
+﻿@model IEnumerable<GrupoAleff.Acesso.Web.Models.LogAcessoViewModel>
+
+@{
+    ViewBag.Title = "Acesso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Acesso</h2>
+
+
+<table class="table">
+    <tr>        
+        <th>
+            @Html.DisplayNameFor(model => model.DataHoraAcesso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnderecoIp)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>        
+        <td>
+            @Html.DisplayFor(modelItem => item.DataHoraAcesso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnderecoIp)
+        </td>        
+    </tr>
+}
+
+</table>

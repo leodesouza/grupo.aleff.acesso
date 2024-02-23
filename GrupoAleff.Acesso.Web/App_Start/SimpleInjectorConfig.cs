@@ -35,6 +35,7 @@ namespace GrupoAleff.Acesso.Web
 
             //AppService
             container.Register<IUsuarioAppService, UsuarioAppService>(Lifestyle.Scoped);
+            container.Register<ILogAcessoAppService, LogAcessoAppService>(Lifestyle.Scoped);
 
             //Repository
             container.Register<IUsuarioRepository, UsuarioRepository>(Lifestyle.Scoped);

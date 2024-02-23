@@ -17,9 +17,9 @@ namespace GrupoAleff.Acesso.Web
                 cfg.CreateMap<List<Usuario>, List<UsuarioViewModel>>();
 
                 //LogAcesso
-                //cfg.CreateMap<LogAcessoModel, LogAcesso>();
-                //cfg.CreateMap<LogAcesso, LogAcessoModel>();
-                //cfg.CreateMap<List<LogAcesso>, List<LogAcessoModel>>();
+                cfg.CreateMap<LogAcessoViewModel, LogAcesso>();
+                cfg.CreateMap<LogAcesso, LogAcessoViewModel>();
+                cfg.CreateMap<List<LogAcesso>, List<LogAcessoViewModel>>();
             });
 
             return config.CreateMapper();

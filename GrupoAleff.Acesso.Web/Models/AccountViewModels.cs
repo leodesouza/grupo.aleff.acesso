@@ -49,17 +49,14 @@ namespace GrupoAleff.Acesso.Web.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
+        [Display(Name = "Login")]        
+        public string Login { get; set; }
+        
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
+        [Display(Name = "Senha")]
+        public string Senha { get; set; }        
+        public bool IsAdmin { get; set; }
+        
     }
 
     public class RegisterViewModel

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace GrupoAleff.Acesso.Web.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : BaseController
     {
         private readonly IUsuarioAppService _usuarioAppService;
         private readonly IMapper _mapper;
@@ -34,17 +34,7 @@ namespace GrupoAleff.Acesso.Web.Controllers
         {
             return View();
         }
-
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        public ActionResult Login(LoginViewModel loginViewModel)
-        {
-            return View();
-        }
-
+              
         
         public ActionResult CadastrarUsuario()
         {
@@ -88,11 +78,35 @@ namespace GrupoAleff.Acesso.Web.Controllers
             }
         }
 
+        public async Task<ActionResult> SalvarUsuario(UsuarioViewModel usuarioViewModel)
+        {
+            try
+            {
+                var usuarioSalvo = await _usuarioAppService.GetById(usuarioViewModel.UsuarioId);
+                if (usuarioSalvo != null)
+                {
+                    var usuario = _mapper.Map<Usuario>(usuarioViewModel);
+                    await _usuarioAppService.Update(usuario);                    
+                }
+                return RedirectToAction("ListarUsuarios");
+            }
+            catch (System.Exception)
+            {
+
+                return View();
+            }
+        }
+
+        
+
         public async Task<ActionResult> DeletarUsuario(int id)
         {
             try
             {
-                var usuario = _usuarioAppService.GetById(id);
+                var usuarioSalvo = await _usuarioAppService.GetById(id);
+                if (usuarioSalvo != null)                
+                    await _usuarioAppService.Remove(usuarioSalvo);
+                
                 return RedirectToAction("ListarUsuarios");
             }
             catch (System.Exception)
@@ -113,8 +127,8 @@ namespace GrupoAleff.Acesso.Web.Controllers
 
                 var usuario = _mapper.Map<Usuario>(usuarioModel);
                 await _usuarioAppService.Add(usuario);
-
-                return RedirectToAction("Index");
+                
+                return RedirectToAction("ListarUsuarios");
             }
             catch
             {
