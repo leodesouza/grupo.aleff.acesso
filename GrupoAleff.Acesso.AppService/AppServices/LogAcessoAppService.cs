@@ -22,6 +22,11 @@ namespace GrupoAleff.Acesso.AppService.AppServices
         public async Task<IEnumerable<LogAcesso>> ObterLogsAcesso()
         {
             return await _logAcessoRepository.ObterLogsAcesso();
-        }        
+        }
+
+        public async Task<IEnumerable<LogAcesso>> ObterLogsAcesso(int usuarioId)
+        {
+            return await _logAcessoRepository.ObterLogsAcesso(usuarioId);
+        }
     }
 }

@@ -31,18 +31,16 @@ namespace GrupoAleff.Acesso.Infra.Data.Repositories
 
         public async Task<IEnumerable<LogAcesso>> ObterLogsAcesso()
         {
-            try
-            {
-                var connection = AleffDBContext.GetConnection();
+            var connection = AleffDBContext.GetConnection();
+            return await connection.QueryAsync<LogAcesso>("select ac.DataHoraAcesso, a.Nome, ac.EnderecoIp from LogAcesso ac inner join Usuario a on ac.UsuarioId = a.UsuarioId");                        
+        }
 
-                return await connection.QueryAsync<LogAcesso>("select ac.DataHoraAcesso, a.Nome, ac.EnderecoIp from LogAcesso ac inner join Usuario a on ac.UsuarioId = a.UsuarioId");
-
-            }catch(Exception ex)
-            {
-                var p = 0;
-            }
-
-            return new List<LogAcesso>();
+        public async Task<IEnumerable<LogAcesso>> ObterLogsAcesso(int usuarioId)
+        {
+            var connection = AleffDBContext.GetConnection();
+            var sql = @"select ac.DataHoraAcesso, a.Nome, ac.EnderecoIp from LogAcesso ac inner join Usuario a on ac.UsuarioId = a.UsuarioId
+                        where a.usuarioid =@pUsuarioId";
+            return await connection.QueryAsync<LogAcesso>(sql, new { pUsuarioId = usuarioId });
         }
     }
 }

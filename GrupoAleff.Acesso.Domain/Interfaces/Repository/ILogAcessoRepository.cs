@@ -8,5 +8,6 @@ namespace GrupoAleff.Acesso.Domain.Interfaces.Repository
     {
         Task InserirLogAcesso(LogAcesso logAcesso);
         Task<IEnumerable<LogAcesso>> ObterLogsAcesso();
+        Task<IEnumerable<LogAcesso>> ObterLogsAcesso(int usuarioId);
     }
 }

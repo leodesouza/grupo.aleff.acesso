@@ -8,5 +8,6 @@ namespace GrupoAleff.Acesso.AppService.Interfaces
     {
         Task InserirLogAcesso(LogAcesso logAcesso);
         Task<IEnumerable<LogAcesso>> ObterLogsAcesso();
+        Task<IEnumerable<LogAcesso>> ObterLogsAcesso(int usuarioId );
     }
 }
