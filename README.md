@@ -1,1 +1,2 @@
-# grupo.aleff.acesso
+# Orientações para executar o projeto
+
