@@ -37,3 +37,11 @@ http://localhost:{port}/api/usuario
 
 ### Get, Delete
 http://localhost:{port}/api/usuario/{id}
+
+http://localhost:{port}/api/usuario
+http://localhost:{port}/api/usuario
+
+## LogAcesso
+http://localhost:49436/api/logacesso/1
+
+
