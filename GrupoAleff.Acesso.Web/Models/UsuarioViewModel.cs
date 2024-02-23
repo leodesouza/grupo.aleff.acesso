@@ -6,6 +6,8 @@ namespace GrupoAleff.Acesso.Web.Models
     public class UsuarioViewModel
     {
 
+        public int UsuarioId { get; set; }
+
         [Required]
         [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [Display(Name = "Nome")]
@@ -21,6 +23,8 @@ namespace GrupoAleff.Acesso.Web.Models
         [DataType(DataType.Password)]
         [Display(Name = "Senha")]
         public string Senha { get; set; }
+
+        public string MaskSenha { get { return "******"; } }
 
         [Required]
         [Display(Name = "Administrador?")]

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GrupoAleff.Acesso.Web.Models.UsuarioViewModel>
+
+@{
+    ViewBag.Title = "ListarUsuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar Novo", "CadastrarUsuario")
+</p>
+<table class="table">
+    <tr>        
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Senha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAdmin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>        
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaskSenha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAdmin)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "EditarUsuario", new { id=item.UsuarioId }) |            
+            @Html.ActionLink("Deletar", "DeletarUsuario", new { id = item.UsuarioId })
+        </td>
+    </tr>
+}
+
+</table>

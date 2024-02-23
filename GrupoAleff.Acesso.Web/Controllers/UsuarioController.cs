@@ -2,6 +2,7 @@
 using GrupoAleff.Acesso.AppService.Interfaces;
 using GrupoAleff.Acesso.Domain.Entities;
 using GrupoAleff.Acesso.Web.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -33,6 +34,75 @@ namespace GrupoAleff.Acesso.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Login(LoginViewModel loginViewModel)
+        {
+            return View();
+        }
+
+        
+        public ActionResult CadastrarUsuario()
+        {
+            return View();
+        }
+
+
+        public async Task<ActionResult> ListarUsuarios()
+        {
+            try
+            {
+                var usuarios = await _usuarioAppService.GetAll();
+                var usuarioModel = _mapper.Map<IEnumerable<UsuarioViewModel>>(usuarios);
+                return View(usuarioModel);
+            }
+            catch (System.Exception)
+            {
+
+                return View();
+            }
+
+        }
+
+        public async Task<ActionResult> EditarUsuario(int id)
+        {
+            try
+            {
+                var usuario = await _usuarioAppService.GetById(id);
+                if (usuario != null)
+                {
+                    var usuarioModel = _mapper.Map<UsuarioViewModel>(usuario);
+                    return View(usuarioModel);
+                }
+
+                return View();
+            }
+            catch (System.Exception)
+            {
+
+                return View();
+            }
+        }
+
+        public async Task<ActionResult> DeletarUsuario(int id)
+        {
+            try
+            {
+                var usuario = _usuarioAppService.GetById(id);
+                return RedirectToAction("ListarUsuarios");
+            }
+            catch (System.Exception)
+            {
+
+                return View();
+            }
+
+        }
+
 
         // POST: Usuario/Create
         [HttpPost]
