@@ -44,4 +44,9 @@ http://localhost:{port}/api/usuario
 ## LogAcesso
 http://localhost:49436/api/logacesso/1
 
+#Projeto API
+GrupoAleff.Acesso.API
+#Projeto ASP.NET
+GrupoAleff.Acesso.Web
+
 
